@@ -3,7 +3,7 @@ var path      = require('path');
 var gulp      = require('gulp');
 var webserver = require('gulp-webserver');
 
-var files = ['*.html', 'js/*.*', 'css/*.*', 'fonts/*.*'];
+var files = ['favicon.ico', '*.html', 'js/*.*', 'css/*.*', 'fonts/*.*'];
 
 gulp.task('webserver', function() {
   gulp.src('dist')
