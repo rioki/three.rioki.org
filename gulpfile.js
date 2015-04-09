@@ -1,9 +1,12 @@
 
+var path      = require('path');
 var gulp      = require('gulp');
 var webserver = require('gulp-webserver');
 
+var files = ['*.html', 'js/*.*', 'css/*.*', 'fonts/*.*'];
+
 gulp.task('webserver', function() {
-  gulp.src(__dirname)
+  gulp.src('dist')
     .pipe(webserver({
       livereload: true,
       directoryListing: true,
@@ -11,8 +14,13 @@ gulp.task('webserver', function() {
     }));
 });
 
-gulp.task('default', function () {});
+gulp.task('default', function () {
+  return gulp.src(files, { base: './' })
+    .pipe(gulp.dest('dist'));
+});
 
 gulp.task('test', ['default']);
 
-gulp.task('watch', ['default', 'webserver'], function () {});
+gulp.task('watch', ['default', 'webserver'], function () {
+  gulp.watch(files, ['default']);
+});
