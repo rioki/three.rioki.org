@@ -1,17 +1,17 @@
 
-var path      = require('path');
-var gulp      = require('gulp');
-var webserver = require('gulp-webserver');
+var path        = require('path');
+var gulp        = require('gulp');
+var connect     = require('connect');
+var serveStatic = require('serve-static');
+var http        = require('http');
 
 var files = ['favicon.ico', '*.html', 'js/*.*', 'css/*.*', 'fonts/*.*'];
 
 gulp.task('webserver', function() {
-  gulp.src('dist')
-    .pipe(webserver({
-      livereload: true,
-      directoryListing: true,
-      open: true
-    }));
+  var app = connect()
+    .use(serveStatic('dist'))
+  
+  http.createServer(app).listen(8080);
 });
 
 gulp.task('default', function () {
