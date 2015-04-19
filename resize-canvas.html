@@ -16,7 +16,7 @@
       var renderer = new THREE.WebGLRenderer({canvas: canvas});
       canvas.width  = canvas.clientWidth;
       canvas.height = canvas.clientHeight;
-      renderer.setSize(canvas.clientWidth, canvas.clientHeight);
+      renderer.setViewport(0, 0, canvas.clientWidth, canvas.clientHeight);
     
       var scene = new THREE.Scene();
       
