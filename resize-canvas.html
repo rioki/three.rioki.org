@@ -11,6 +11,20 @@
     <canvas id="canvas"></canvas>   
     <script src="js/three.min.js"></script>    
     <script>
+      function onResize(element, callback) {
+        var height = element.clientHeight;
+        var width  = element.clientWidth;
+        
+        return setInterval(function() {
+            if (element.clientHeight != height || element.clientWidth != width) {
+              height = element.clientHeight;
+              width  = element.clientWidth;
+              callback();
+            }
+        }, 500);
+      }
+    </script>
+    <script>
       var canvas = document.getElementById('canvas');    
     
       var renderer = new THREE.WebGLRenderer({canvas: canvas});
@@ -32,7 +46,7 @@
       light.position.set(0, 0, 1);
       scene.add(light);
       
-      canvas.addEventListener('resize', function () {
+      onResize(canvas, function () {
           canvas.width  = canvas.clientWidth;
           canvas.height = canvas.clientHeight;
           renderer.setViewport(0, 0, canvas.clientWidth, canvas.clientHeight);
